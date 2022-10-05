@@ -23,6 +23,7 @@ from pet.cnn.utils.analyser import RCNNAnalyser
 
 from pet.projects.centerrit.core.config import get_base_cfg, infer_cfg
 from pet.projects.centerrit.data.structures.ritbox import ritbox2poly
+import time
 
 
 def vis_ritbox(im, ritbox, bbox_color):
@@ -40,7 +41,7 @@ class Fisheeye_Inference(object):
     def __init__(self):
 
         self.cfg = get_base_cfg()
-        self.cfg.merge_from_file('ckpts/projects/centerrit/loaf/1k/centerrit_DLA-34_adam_loaf-1k_12e/centerrit_DLA-34_adam_loaf-1k_12e.yaml')
+        self.cfg.merge_from_file('ckpts/projects/centerrit/loaf/1k/centerrit_MV3-LM-0.5-XD128@D2-WODCN-ST1-SYNCBN128_adam_0.25x/centerrit_MV3-LM-0.5-XD128@D2-WODCN-ST1-SYNCBN128_adam_0.25x.yaml')
         # self.cfg.merge_from_list(args.opts)
         self.cfg = infer_cfg(self.cfg)
         self.cfg.freeze()
@@ -62,22 +63,30 @@ class Fisheeye_Inference(object):
         self.inference = Inference(self.cfg, self.model)
 
     def __call__(self, img):
+        time1 = time.time()
         # img = Image.open('/home/user/Program/xinxueshi_workspace/Pet-dev/tools/projects/centerrit/00.jpg')
         result = self.inference(img)
+        time3 = time.time()
 
         boxes = result[0][0]
+        print(len(boxes))
         areas = (boxes[:, 2] - boxes[:, 0]) * (boxes[:, 3] - boxes[:, 1])
-        # print(areas)
         sorted_inds = np.argsort(-areas)
+        vis_img = None
 
-        vis_img = cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
         for i in sorted_inds:
             bbox = boxes[i, :-1]
             score = boxes[i, -1]
             if score < 0.5:
                 continue
-            img = cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
-            vis_img = vis_ritbox(img, bbox, (0,0,0))
+            if len(boxes) == 0:
+                vis_img = img
+            else:
+                img = cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
+                vis_img = vis_ritbox(img, bbox, (0,0,0))
+        time2 = time.time()
+        print(time3-time1)
+        print(time2-time3)
 
         return vis_img
         # cv2.imwrite('/home/user/Program/xinxueshi_workspace/Pet-dev/tools/projects/centerrit/00_test.jpg',vis_img)
