@@ -1,10 +1,10 @@
 from flask import Flask, render_template, Response
 import cv2
-import numpy as np
-from PIL import Image
-
-from thread_method import RTSCapture
-from inference import Fisheeye_Inference
+# import numpy as np
+# from PIL import Image
+#
+# from a_thread_method import RTSCapture
+# from inference import Fisheeye_Inference
 
 VideoStreamServer_url = 'rtsp://192.168.88.210/live'
 
@@ -21,9 +21,7 @@ class VideoTest(object):
 
     def get_frame(self):
         success, img = self.video.read()
-
         # img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-
         # 在这里处理视频帧
         # cv2.putText(image, "Hello World", (100, 300), cv2.FONT_HERSHEY_SIMPLEX,
         #             2, (46, 204, 113), 3, cv2.LINE_AA)
