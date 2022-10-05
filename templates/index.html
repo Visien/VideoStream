@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../../../favicon.ico">
+
+  <title>Narrow Jumbotron Template for Bootstrap</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="static/editor.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="static/narrow-jumbotron.css" rel="stylesheet">
+
+  <!-- Animate on scroll library -->
+  <script src="static/aos.js"></script>
+  <link href="static/aos.css" rel="stylesheet">
+  <noscript>
+    <style type="text/css">
+      [data-aos] {
+        opacity: 1 !important;
+        transform: translate(0) scale(1) !important;
+      }
+    </style>
+  </noscript>
+  <style id="vvvebjs-styles">
+    #jumbotron {
+      background-color: #ffffff;
+      opacity: 1;
+      color: #ebf5ff;
+      top: auto;
+      width: 1440px;
+      height: 860px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    body {
+      background-color: #406aa0;
+      /* width: 1500px; */
+    }
+
+    #top-header {
+      color: #f5faff;
+    }
+
+    #jumbotron>.container {
+      opacity: 1;
+      width: 1380px;
+      height: 800px;
+      max-width: 200%;
+      float: none;
+      line-height: px;
+      max-height: 200%;
+    }
+
+    #jumbotron>.container>.rounded.mw-100.my-5 {
+      width: 1280px;
+      height: 720px;
+      max-height: 150%;
+      max-width: 150%;
+    }
+  </style>
+</head>
+
+<body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+  <header class="header clearfix container" id="top-header" data-aos="zoom-in" data-aos-delay="100"
+    style="text-align: center; font-size: 38px;">
+    <font _mstmutation="1" _msthash="149682" _msttexthash="8335951">Video Stream Server Test</font>
+    <div class="container">
+      <nav>
+        <ul class="nav nav-pills float-end">
+          <li class="nav-item">
+
+          </li>
+          <li class="nav-item">
+
+          </li>
+          <li class="nav-item">
+
+          </li>
+        </ul>
+      </nav>
+      <h3 class="text-muted">
+        <div style="text-align: right;"></div>
+      </h3>
+    </div>
+  </header>
+
+  <section class="jumbotron container p-4 bg-light" id="jumbotron">
+    <div class="container">
+
+      <img class="rounded mw-100 my-5" src="{{ url_for('video_feed') }}">
+
+    </div>
+  </section>
+
+  <section id="marketing">
+    <div class="container">
+      <div class="row marketing">
+
+
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="page-footer" data-aos="fade-up" data-aos-delay="700">
+    <div class="container">
+      <p>© Company 2017</p>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init();
+  </script>
+
+
+</body>
+
+</html>
