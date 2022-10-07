@@ -20,11 +20,10 @@ class VideoTest(object):
 
     def get_frame(self):
         success, img = self.video.read()
-        print('get')
         # img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
         # 在这里处理视频帧
-        # cv2.putText(image, "Hello World", (100, 300), cv2.FONT_HERSHEY_SIMPLEX,
-        #             2, (46, 204, 113), 3, cv2.LINE_AA)
+        cv2.putText(img, "Hello World", (100, 300), cv2.FONT_HERSHEY_SIMPLEX,
+                    2, (46, 204, 113), 3, cv2.LINE_AA)
         # self.f += 1
         # if self.f % 3 == 0:
         #     img = self.model.__call__(img)
@@ -49,6 +48,7 @@ def index():
 def gen(camera):
     while True:
         # 使用generator函数输出视频流， 每次请求输出的content类型是image/jpeg
+        frame = camera.get_frame()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
@@ -60,4 +60,4 @@ def video_feed():
 
 
 if __name__ == '__main__':
-    app.run(host='192.168.88.210', debug=True, port=5000)
+    app.run(host='192.168.88.210', debug=True, port=5001)
