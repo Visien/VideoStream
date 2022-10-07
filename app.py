@@ -14,13 +14,13 @@ class VideoTest(object):
         # self.model = Fisheeye_Inference()
         # 通过opencv获取实时视频流
         self.video = cv2.VideoCapture(VideoStreamServer_url)
-        self.f = 0
 
     def __del__(self):
         self.video.release()
 
     def get_frame(self):
         success, img = self.video.read()
+        print('get')
         # img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
         # 在这里处理视频帧
         # cv2.putText(image, "Hello World", (100, 300), cv2.FONT_HERSHEY_SIMPLEX,
@@ -48,7 +48,6 @@ def index():
 
 def gen(camera):
     while True:
-        frame = camera.get_frame()
         # 使用generator函数输出视频流， 每次请求输出的content类型是image/jpeg
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')

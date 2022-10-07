@@ -41,7 +41,7 @@ class Fisheeye_Inference(object):
     def __init__(self):
 
         self.cfg = get_base_cfg()
-        self.cfg.merge_from_file('ckpts/projects/centerrit/loaf/1k/centerrit_MV3-LM-0.5-XD128@D2-WODCN-ST1-SYNCBN128_adam_0.25x/centerrit_MV3-LM-0.5-XD128@D2-WODCN-ST1-SYNCBN128_adam_0.25x.yaml')
+        self.cfg.merge_from_file('/home/user/Program/xinxueshi_workspace/Pet-dev/ckpts/projects/centerrit/loaf/1k/centerrit_MV3-LM-0.5-XD128@D2-WODCN-ST1-SYNCBN128_adam_0.25x/centerrit_MV3-LM-0.5-XD128@D2-WODCN-ST1-SYNCBN128_adam_0.25x.yaml')
         # self.cfg.merge_from_list(args.opts)
         self.cfg = infer_cfg(self.cfg)
         self.cfg.freeze()
@@ -64,7 +64,7 @@ class Fisheeye_Inference(object):
 
     def __call__(self, img):
         time1 = time.time()
-        # img = Image.open('/home/user/Program/xinxueshi_workspace/Pet-dev/tools/projects/centerrit/00.jpg')
+        # img = Image.open('/home/user/Program/xinxueshi_workspace/Pet-dev/tools/projects/centerrit/resource/00.jpg')
         result = self.inference(img)
         time3 = time.time()
 
@@ -89,24 +89,27 @@ class Fisheeye_Inference(object):
         print(time2-time3)
 
         return vis_img
-        # cv2.imwrite('/home/user/Program/xinxueshi_workspace/Pet-dev/tools/projects/centerrit/00_test.jpg',vis_img)
+        # cv2.imwrite('/home/user/Program/xinxueshi_workspace/Pet-dev/tools/projects/centerrit/resource/00_test.jpg',vis_img)
 
 
-# if __name__ == "__main__":
-#     # Parse arguments
-#     # parser = argparse.ArgumentParser(description="Pet Model Testing")
-#     # parser.add_argument("--local_rank", type=int, default=0)
-#     # parser.add_argument("--cfg",
-#     #                     type=str,
-#     #                     dest="cfg_file",
-#     #                     default="cfgs/projects/centerrit/centerrit_DLA-34_adam_aug.yaml",
-#     #                     help="optional config file")
-#     # parser.add_argument("opts",
-#     #                     nargs=argparse.REMAINDER,
-#     #                     help="See pet/projects/centerrit/core/config.py for all options")
-#     #
-#     # args = parser.parse_args()
-#
-#     torch.cuda.set_device(args.local_rank)
-#
-#     main(args)
+if __name__ == "__main__":
+    # Parse arguments
+    # parser = argparse.ArgumentParser(description="Pet Model Testing")
+    # parser.add_argument("--local_rank", type=int, default=0)
+    # parser.add_argument("--cfg",
+    #                     type=str,
+    #                     dest="cfg_file",
+    #                     default="cfgs/projects/centerrit/centerrit_DLA-34_adam_aug.yaml",
+    #                     help="optional config file")
+    # parser.add_argument("opts",
+    #                     nargs=argparse.REMAINDER,
+    #                     help="See pet/projects/centerrit/core/config.py for all options")
+    #
+    # args = parser.parse_args()
+    # torch.cuda.set_device(args.local_rank)
+    # main(args)
+    model = Fisheeye_Inference()
+    img = Image.open('/home/user/Program/xinxueshi_workspace/Pet-dev/tools/projects/centerrit/resource/00.jpg')
+    vis_img = model(img)
+    cv2.imwrite('/home/user/Program/xinxueshi_workspace/Pet-dev/tools/projects/centerrit/result/00_res.jpg', vis_img)
+
