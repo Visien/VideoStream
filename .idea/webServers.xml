@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="6f3237a9-d245-4360-9be3-cd05c2c33d72" name="192.168.88.210">
+        <fileTransfer rootFolder="/home/user/Program/xinxueshi_workspace/Pet-dev/tools/projects/centerrit" accessType="SFTP" host="192.168.88.210" port="22" sshConfigId="2ff9b7df-7f02-4e3a-b34e-09b53645b1a5" sshConfig="user@192.168.88.210:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
